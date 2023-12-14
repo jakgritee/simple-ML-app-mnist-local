@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>MNIST</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto mt-5 text-center">
+
+                <h1 class="mb-5">Recognizing hand-written digits</h1>
+
+                <p align="left">Note: Please upload only a one-digit-like image</p>
+                <div>
+                    <p align="left">
+                        Ex.
+                        <br>
+                        <img src="static/images/eight.png" alt="" width="100px" height="100px">
+                    </p>>
+                </div>
+
+                <form method="post" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            {{ form.photo(class="form-control") }}
+                        </div>
+                        <div class="col-auto">
+                            {{ form.submit(class="btn btn-success") }}
+                        </div>
+                    </div>
+                </form>
+
+                {% if file_url %}
+                <div class="mt-5">
+                    <img src="{{ file_url }}" width="250px" height="250px">
+                </div>
+                {% endif %}
+                <br>
+
+            </div>
+            
+            <form method="post">
+                <input type="submit" value="predict" name="action" />
+            </form>
+
+
+            {% if prediction %}
+            <div>
+                <h1> Prediction = {{ prediction }} </h1>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</body>
+
+</html>
